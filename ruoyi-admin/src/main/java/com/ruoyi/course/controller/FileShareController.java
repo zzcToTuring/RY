@@ -34,7 +34,7 @@ public class FileShareController {
             String encodedPath = URLEncoder.encode(filePath, "UTF-8");
 
             // 构建下载链接
-            String downloadUrl = String.format("http://%s:%d/file/download?path=%s", ip, port, encodedPath);
+            String downloadUrl = String.format("http://%s:%d/NoAuth/file/download?path=%s", ip, port, encodedPath);
             return AjaxResult.success("链接生成成功", downloadUrl);
         } catch (Exception e) {
             return AjaxResult.error("链接生成失败: " + e.getMessage());
