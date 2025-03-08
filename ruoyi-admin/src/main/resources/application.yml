@@ -116,7 +116,7 @@ pagehelper:
 swagger:
   # 是否开启swagger
   enabled: true
-  # 请求前缀
+  # 请求前缀（测接口时需更改）
   pathMapping: /dev-api
 
 # 防止XSS攻击
