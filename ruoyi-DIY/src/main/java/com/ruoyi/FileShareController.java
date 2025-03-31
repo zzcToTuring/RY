@@ -1,4 +1,4 @@
-package com.ruoyi.course.controller;
+package com.ruoyi;
 
 import com.ruoyi.common.core.domain.AjaxResult;
 import org.springframework.core.io.FileSystemResource;

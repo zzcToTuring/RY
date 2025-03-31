@@ -6,7 +6,7 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 课程管理对象 course
+ * 课程管理对象 mapper
  * 
  * @author zzc
  * @date 2025-02-18
