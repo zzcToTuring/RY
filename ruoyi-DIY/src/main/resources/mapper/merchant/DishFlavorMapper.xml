@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.merchant.mapper.DishFlavorMapper">
+    
+    <resultMap type="DishFlavor" id="DishFlavorResult">
+        <result property="id"    column="id"    />
+        <result property="dishId"    column="dish_id"    />
+        <result property="name"    column="name"    />
+        <result property="value"    column="value"    />
+    </resultMap>
+
+    <sql id="selectDishFlavorVo">
+        select id, dish_id, name, value from tb_dish_flavor
+    </sql>
+
+    <select id="selectDishFlavorList" parameterType="DishFlavor" resultMap="DishFlavorResult">
+        <include refid="selectDishFlavorVo"/>
+        <where>  
+            <if test="dishId != null "> and dish_id = #{dishId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="value != null  and value != ''"> and value = #{value}</if>
+        </where>
+    </select>
+    
+    <select id="selectDishFlavorById" parameterType="Long" resultMap="DishFlavorResult">
+        <include refid="selectDishFlavorVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertDishFlavor" parameterType="DishFlavor" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_dish_flavor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dishId != null">dish_id,</if>
+            <if test="name != null">name,</if>
+            <if test="value != null">value,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dishId != null">#{dishId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="value != null">#{value},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDishFlavor" parameterType="DishFlavor">
+        update tb_dish_flavor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dishId != null">dish_id = #{dishId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="value != null">value = #{value},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDishFlavorById" parameterType="Long">
+        delete from tb_dish_flavor where id = #{id}
+    </delete>
+
+    <delete id="deleteDishFlavorByIds" parameterType="String">
+        delete from tb_dish_flavor where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
