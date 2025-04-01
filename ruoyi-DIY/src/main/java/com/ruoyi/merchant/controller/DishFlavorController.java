@@ -28,7 +28,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2025-03-31
  */
 @RestController
-@RequestMapping("/DIY/flavor")
+@RequestMapping("/merchant/flavor")
 public class DishFlavorController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class DishFlavorController extends BaseController
     /**
      * 查询菜品配置列表
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:list')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:list')")
     @GetMapping("/list")
     public TableDataInfo list(DishFlavor dishFlavor)
     {
@@ -49,7 +49,7 @@ public class DishFlavorController extends BaseController
     /**
      * 导出菜品配置列表
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:export')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:export')")
     @Log(title = "菜品配置", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, DishFlavor dishFlavor)
@@ -62,7 +62,7 @@ public class DishFlavorController extends BaseController
     /**
      * 获取菜品配置详细信息
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:query')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -72,7 +72,7 @@ public class DishFlavorController extends BaseController
     /**
      * 新增菜品配置
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:add')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:add')")
     @Log(title = "菜品配置", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody DishFlavor dishFlavor)
@@ -83,7 +83,7 @@ public class DishFlavorController extends BaseController
     /**
      * 修改菜品配置
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:edit')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:edit')")
     @Log(title = "菜品配置", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody DishFlavor dishFlavor)
@@ -94,7 +94,7 @@ public class DishFlavorController extends BaseController
     /**
      * 删除菜品配置
      */
-    @PreAuthorize("@ss.hasPermi('DIY:flavor:remove')")
+    @PreAuthorize("@ss.hasPermi('merchant:flavor:remove')")
     @Log(title = "菜品配置", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)

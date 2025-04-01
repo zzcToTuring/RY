@@ -28,7 +28,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2025-03-31
  */
 @RestController
-@RequestMapping("/DIY/dish")
+@RequestMapping("/merchant/dish")
 public class DishController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class DishController extends BaseController
     /**
      * 查询菜品管理列表
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:list')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:list')")
     @GetMapping("/list")
     public TableDataInfo list(Dish dish)
     {
@@ -49,7 +49,7 @@ public class DishController extends BaseController
     /**
      * 导出菜品管理列表
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:export')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:export')")
     @Log(title = "菜品管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, Dish dish)
@@ -62,7 +62,7 @@ public class DishController extends BaseController
     /**
      * 获取菜品管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:query')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -72,7 +72,7 @@ public class DishController extends BaseController
     /**
      * 新增菜品管理
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:add')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:add')")
     @Log(title = "菜品管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Dish dish)
@@ -83,7 +83,7 @@ public class DishController extends BaseController
     /**
      * 修改菜品管理
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:edit')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:edit')")
     @Log(title = "菜品管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Dish dish)
@@ -94,7 +94,7 @@ public class DishController extends BaseController
     /**
      * 删除菜品管理
      */
-    @PreAuthorize("@ss.hasPermi('DIY:dish:remove')")
+    @PreAuthorize("@ss.hasPermi('merchant:dish:remove')")
     @Log(title = "菜品管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
