@@ -1,11 +1,14 @@
 package com.ruoyi;
 
 import com.ruoyi.common.core.domain.AjaxResult;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -13,7 +16,7 @@ import java.net.*;
 import java.util.Enumeration;
 
 @RestController
-@RequestMapping("/NoAuth/file")
+@RequestMapping("/NoAuth/fileDemo")
 public class FileShareController {
 
     /**
@@ -23,7 +26,13 @@ public class FileShareController {
     public AjaxResult generateFileUrl(@RequestParam String filePath, HttpServletRequest request) {
         try {
             // 基础校验
+            if (filePath == null || filePath.trim().isEmpty()) {
+                return AjaxResult.error("文件路径不能为空");
+            }
+            filePath = filePath.trim();
+            filePath = filePath.replaceAll("\\p{C}", "").trim();
             File file = new File(filePath);
+
             if (!file.exists()) return AjaxResult.error("文件不存在");
             if (!file.isFile()) return AjaxResult.error("路径不是文件");
             if (!file.canRead()) return AjaxResult.error("文件不可读");
@@ -64,7 +73,9 @@ public class FileShareController {
     /**
      * 获取本机局域网IP地址
      */
-    private static String getLocalIP() throws SocketException {
+
+
+    public String getLocalIP() throws SocketException {
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
         while (interfaces.hasMoreElements()) {
             NetworkInterface iface = interfaces.nextElement();
